@@ -23,21 +23,21 @@ def login(usr, pwd):
         accTo = response["AuthenticationResult"]["AccessToken"]
         response = cog.get_user(AccessToken=accTo)
         
-        # res = json.loads(json.dumps(response))
+        res = json.loads(json.dumps(response))
 
-        # for i in range(0,len(res['UserAttributes'])):
-        #     if(res['UserAttributes'][i]['Name']=="name") :
-        #         nam = res['UserAttributes'][i]['Value']
+        for i in range(0,len(res['UserAttributes'])):
+            if(res['UserAttributes'][i]['Name']=="name") :
+                nam = res['UserAttributes'][i]['Value']
 
-        # key={
-        #     "username": usr,
-        #     "name": nam
-        # }       
-        # upd={
-        #     "token_val": {'Value' : accTo}
-        # }
+        key={
+            "username": usr,
+            "name": nam
+        }       
+        upd={
+            "token_val": {'Value' : accTo}
+        }
 
-        # table.update_item(Key=key, AttributeUpdates=upd)
+        table.update_item(Key=key, AttributeUpdates=upd)
 
         return json.loads(json.dumps(response))
     except ClientError as e:
