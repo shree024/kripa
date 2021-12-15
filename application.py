@@ -41,9 +41,6 @@ def post_login():
             return {"success": "false"}
 
 
-
-
-
 @application.route('/')
 def hello_world():  
     return 'Hello user'
