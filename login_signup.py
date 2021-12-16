@@ -7,6 +7,7 @@ from awscli.errorhandler import ClientError
 
 table= connect_table.table1
 cog = connect_table.cogclient
+snsmsg = connect_table.snsclient
 
 
 COGNITO_USER_CLIENT_ID = "23rvodick24unj9av85of3p4vl"
