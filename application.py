@@ -41,9 +41,15 @@ def post_login():
             return {"success": "false"}
 
 
+def get_content():
+    return "It works!", 200
+
 @application.route('/')
-def hello_world():  
-    return 'Hello user'
+def home():
+    content, status_code = get_content()
+    headers = {'Access-Control-Allow-Origin': '*'}
+    return content, status_code, headers
+
 
 
 if __name__ == '__main__':
