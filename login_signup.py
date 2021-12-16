@@ -62,3 +62,33 @@ def signUp(usr,pwd,name,mob):
         return {"success": "false"}
 
 
+def mobreg(mob):
+    try:
+        snsmsg.create_sms_sandbox_phone_number(
+        PhoneNumber=mob,
+        LanguageCode='en-US'
+        )
+        return {"success": "true"}
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+        return {"success": "false"}
+
+def mobver(mob,code):
+    try:
+        snsmsg.verify_sms_sandbox_phone_number(
+        PhoneNumber=mob,
+        OneTimePassword=code
+        )
+        return {"success": "true"}
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+        return {"success": "false"}
+
+def msgpub(mob,msg):
+    try:
+        snsmsg.publish(PhoneNumber=mob Message=msg)
+        return {"success": "true"}
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+        return {"success": "false"}
+    
