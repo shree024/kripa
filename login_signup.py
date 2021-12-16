@@ -87,7 +87,7 @@ def mobver(mob,code):
 
 def msgpub(mob,msg):
     try:
-        snsmsg.publish(PhoneNumber=mob Message=msg)
+        snsmsg.publish(PhoneNumber=mob, Message=msg)
         return {"success": "true"}
     except ClientError as e:
         print(e.response['Error']['Message'])
