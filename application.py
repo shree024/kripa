@@ -41,6 +41,52 @@ def post_login():
             return {"success": "false"}
 
 
+# SNSReg section
+@application.route('/api/v1/snsreg', methods=['POST', 'GET', 'OPTIONS'])
+@cross_origin(supports_credentials=True)
+def post_snsreg():
+    if (request.method == 'POST'):
+        args = request.get_json()
+        result = login_signup.mobreg(args['mob'])
+        print(result)
+        if result != False:
+            jsonData = jsonify(result)
+            return jsonData
+        else:
+            return {"success": "false"}
+
+# SNSVerify section
+@application.route('/api/v1/snsver', methods=['POST', 'GET', 'OPTIONS'])
+@cross_origin(supports_credentials=True)
+def post_snsver():
+    if (request.method == 'POST'):
+        args = request.get_json()
+        result = login_signup.mobver(args['mob'],args['code'])
+        print(result)
+        if result != False:
+            result1 = login_signup.msgsub(args['mob'])
+            jsonData = jsonify(result1)
+            return jsonData
+        else:
+            return {"success": "false"}
+
+# SNSVerify section
+@application.route('/api/v1/snspub', methods=['POST', 'GET', 'OPTIONS'])
+@cross_origin(supports_credentials=True)
+def post_snsmsg():
+    if (request.method == 'POST'):
+        args = request.get_json()
+        result = login_signup.msgpub(args['mob'],args['msg'])
+        print(result)
+        if result != False:
+            jsonData = jsonify(result)
+            return jsonData
+        else:
+            return {"success": "false"}
+
+        
+        
+        
 def get_content():
     return "It works!", 200
 
